@@ -15,13 +15,13 @@ model Profile {
   userId String @unique
   name String 
   imageUrl String @db.Text
-  email STring @db.Text
+  email String @db.Text
 
   servers Server[]
   members Member[]
   channels Channel[]
 
-  createdAt DateTome @default(now())
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
@@ -37,7 +37,7 @@ model Server{
   members Member[]
   channels Channel[]
 
-  createdAt DateTome @default(now())
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([profileId])
@@ -56,9 +56,9 @@ model Member{
   profile Profile @relation(fields:[profileId],references: [id],onDelete:Cascade)
 
   serverId String
-  server Server @relation(fields:[serverIdId],references: [id],onDelete:Cascade)
+  server Server @relation(fields:[serverId],references: [id],onDelete:Cascade)
 
-  createdAt DateTome @default(now())
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([profileId])
@@ -80,9 +80,9 @@ model Channel{
   profile Profile @relation(fields:[profileId],references: [id],onDelete:Cascade)
 
   serverId String
-  server Server @relation(fields:[serverIdId],references: [id],onDelete:Cascade)
+  server Server @relation(fields:[serverId],references: [id],onDelete:Cascade)
 
-  createdAt DateTome @default(now())
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([profileId])
