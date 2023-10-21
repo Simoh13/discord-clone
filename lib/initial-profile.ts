@@ -1,11 +1,11 @@
 import { currentUser,redirectToSignIn } from "@clerk/nextjs";
 
 import { db } from "@/lib/db";
-import { isErrored } from "stream";
-import { use } from "react";
+
 
 export const initialProfile = async () =>{
     const user = await currentUser()
+    
 
     if (!user) {
         return redirectToSignIn()
@@ -14,7 +14,7 @@ export const initialProfile = async () =>{
         where:{
             userId: user.id
         }
-    })
+    });
     if (profile) {
         return profile
     }
